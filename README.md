@@ -4,7 +4,7 @@ proyecto de diplomado en Django
 
 ## Inital project
 
-´´´text
+```text
 
 Build DB container: >docker-compose build db
 1. Bring DB container up: >docker-compose up db
@@ -21,7 +21,7 @@ Build DB container: >docker-compose build db
 1. Create migrations for a specific app: >docker-compose run migration python my_web/manage.py makemigrations <APP_NAME>
 1. Open Django Shell: >docker-compose run migration python my_web/manage.py shell
 
-´´´
+```
 
 ## Run Project
 
@@ -29,37 +29,37 @@ Despues de compilar todo en docker necesitamos
 
 ### DB
 
-´´´shell
+```shell
 
 docker-compose up -d db
 
-´´´
+```
 
 ### Server
 
-´´´shell
+```shell
 
 docker-compose up web
 
-´´´
+```
 
 ### Add Model
 
 Migra el modelo a la DB para generar las tablas correspondientes.
 
-´´´shell
+```shell
 
 docker-compose run migration python my_web/manage.py makemigrations <APP_NAME>
 docker-compose run migration python my_web/manage.py migrate
 
-´´´
+```
 
 ### Exportar de Docker Template
 
 - Clonar de docker-template/apps/{modelo}
 - Agregar en my_web/settings.py 
 
-´´´python
+```python
 
 # Application definition
 
@@ -75,13 +75,13 @@ INSTALLED_APPS = [
     ...
 ]
 
-´´´
+```
 
 - En consola correr la migración
 
-´´´shell
+```shell
 
 docker-compose run migration python my_web/manage.py makemigrations <APP_NAME>
 docker-compose run migration python my_web/manage.py migrate
 
-´´´
+```
