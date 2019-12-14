@@ -3,13 +3,13 @@ from django.contrib import admin
 from .models import (
     Persona,
     Hermandad,
-    Miembro,
+    # Miembro,
 )
 from .forms import (
     PersonaForm,
     HermandadForm,
     HermandadFormSet,
-    MiembroForm,
+    # MiembroForm,
 )
 
 
@@ -54,7 +54,8 @@ def enroll_persona_membresia(modeladmin, request, queryset):
     # invocar la accion "Incribir Miembro"
     for persona in queryset:
         if not persona.is_member:
-            Miembro.enroll_persona(persona=persona)
+            pass
+            # Miembro.enroll_persona(persona=persona)
 
 
 enroll_persona_membresia.short_description = "Inscribir Miembro"
@@ -70,7 +71,7 @@ class PersonaAdmin(admin.ModelAdmin):
         'tiene_padre',
         'tiene_madre',
         'tiene_hermanos',
-        'es_miembro',
+        # 'es_miembro',
     ]
     search_fields = [  # Aqui definimos los campos que se utilizan para hacer busquedas
         "nombre", 'apellido_paterno',
@@ -106,27 +107,27 @@ class PersonaAdmin(admin.ModelAdmin):
     def tiene_hermanos(self, obj):
         return obj.tiene_hermanos
 
-    def es_miembro(self, obj):
-        return obj.is_member
+    # def es_miembro(self, obj):
+    #     return obj.is_member
 
 
 admin.site.register(Persona, PersonaAdmin)
 
 
-def sign_up_member(modeladmin, request, queryset):
-    pass
+# def sign_up_member(modeladmin, request, queryset):
+#     pass
 
 
-sign_up_member.short_description = "Dar Acceso al Portal"
+# sign_up_member.short_description = "Dar Acceso al Portal"
 
 
-class MiembroAdmin(PersonaAdmin):
-    # La clase MiembroAdmin heredad de la clase PersonaAdmin, ya que sus funciones son similares, con esto se logra
-    # reducir el numero de lineas de codigo y de metodos a implementar,
-    list_display = PersonaAdmin.list_display
-    list_filter = PersonaAdmin.list_filter
-    actions = [sign_up_member]
-    form = MiembroForm
+# class MiembroAdmin(PersonaAdmin):
+#     # La clase MiembroAdmin heredad de la clase PersonaAdmin, ya que sus funciones son similares, con esto se logra
+#     # reducir el numero de lineas de codigo y de metodos a implementar,
+#     list_display = PersonaAdmin.list_display
+#     list_filter = PersonaAdmin.list_filter
+#     actions = [sign_up_member]
+#     form = MiembroForm
 
 
-admin.site.register(Miembro, MiembroAdmin)
+# admin.site.register(Miembro, MiembroAdmin)

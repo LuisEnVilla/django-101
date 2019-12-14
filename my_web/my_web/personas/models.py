@@ -47,9 +47,9 @@ class Persona(models.Model):
         # Una funcion que regresa True si la persona tiene hermanos
         return self.hermanos.all().count() > 0
 
-    @property
-    def is_member(self):
-        return Miembro.objects.filter(persona_ptr=self).first() is not None
+    # @property
+    # def is_member(self):
+    #     return Miembro.objects.filter(persona_ptr=self).first() is not None
 
 
 class Hermandad(models.Model):
@@ -67,28 +67,28 @@ class Hermandad(models.Model):
             return ""
 
 
-class Miembro(Persona):
-    numero_membresia = models.CharField(max_length=10, null=False, blank=False)
+# class Miembro(Persona):
+#     numero_membresia = models.CharField(max_length=10, null=False, blank=False)
 
-    def __str__(self):
-        nombre_completo = super(Miembro, self).__str__()
-        return "{} - {}".format(nombre_completo, self.numero_membresia)
+#     def __str__(self):
+#         nombre_completo = super(Miembro, self).__str__()
+#         return "{} - {}".format(nombre_completo, self.numero_membresia)
 
-    def save(self, *args, **kwargs):
-        numero_membresia = getattr(self, 'numero_membresia', None)
-        if numero_membresia is None or len(numero_membresia.strip()) == 0:
-            numbers = [n for n in range(0, 10)]
-            numero_membresia = ''.join(
-                [str(random.choice(numbers)) for _ in range(0, 10)])
-            self.numero_membresia = numero_membresia
-        super(Miembro, self).save(*args, **kwargs)
+#     def save(self, *args, **kwargs):
+#         numero_membresia = getattr(self, 'numero_membresia', None)
+#         if numero_membresia is None or len(numero_membresia.strip()) == 0:
+#             numbers = [n for n in range(0, 10)]
+#             numero_membresia = ''.join(
+#                 [str(random.choice(numbers)) for _ in range(0, 10)])
+#             self.numero_membresia = numero_membresia
+#         super(Miembro, self).save(*args, **kwargs)
 
-    @classmethod
-    def enroll_persona(cls, persona=None):
-        if persona is not None:
-            miembro = cls(persona_ptr=persona)
-            for name, value in vars(persona).items():
-                setattr(miembro, name, value)
-            miembro.save()
-            return miembro
-        return None
+#     @classmethod
+#     def enroll_persona(cls, persona=None):
+#         if persona is not None:
+#             miembro = cls(persona_ptr=persona)
+#             for name, value in vars(persona).items():
+#                 setattr(miembro, name, value)
+#             miembro.save()
+#             return miembro
+#         return None

@@ -1,2 +1,10 @@
+beautifulsoup4
+requests
 Django>=2.0,<3.0
 psycopg2>=2.7,<3.0
+django-bootstrap4
+# This is for add and API
+djangorestframework
+markdown
+django-filter
+django-rest-swagger

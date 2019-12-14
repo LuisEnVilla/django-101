@@ -4,7 +4,7 @@ from .models import (
     Persona,
     Hermandad,
     GENERO_CHOICES,
-    Miembro,
+    # Miembro,
 )
 
 
@@ -26,12 +26,12 @@ class PersonaForm(forms.ModelForm):
                 self.fields[field].required = False
 
 
-class MiembroForm(PersonaForm):
+# class MiembroForm(PersonaForm):
 
-    class Meta:
-        models = Miembro
-        # Definimos los campos que se van a mostrar en la forma
-        fields = PersonaForm.Meta.fields + ['numero_membresia']
+#     class Meta:
+#         models = Miembro
+#         # Definimos los campos que se van a mostrar en la forma
+#         fields = PersonaForm.Meta.fields + ['numero_membresia']
 
 
 class HermandadFormSet(forms.BaseInlineFormSet):
